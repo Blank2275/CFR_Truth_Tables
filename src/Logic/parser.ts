@@ -296,6 +296,10 @@ export function parse(tokens: Token[], settings: ParserSettings): AstNode {
             expect(")", "Expected Closing Parentheses")
 
             return val
+        } else if (peek().type == "EOI") {
+            return {
+                "type": "Null"
+            }
         } else {
             throw new Error("Invalid Syntax");
         }

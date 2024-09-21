@@ -50,13 +50,14 @@ export function evaluatePossibleWorld(node: AstNode, vars: {[key: string]: boole
         if (val == undefined) throw new Error("Undefined Variable, this is a bug")
 
         return val
+    } else if (node.type == "Null") {
+        return false
     }
 
     throw new Error("Invalid AST Node")
 }
 
-export function getAllPossibleWorlds(node: AstNode): {[key: string]: boolean}[] {
-    let vars = getAllVariables(node);
+export function getAllPossibleWorlds(vars: string[]): {[key: string]: boolean}[] {
     let worlds: {[key: string]: boolean}[] = []
 
     for (let i = 0; i < Math.pow(2, vars.length); i++) {
@@ -111,7 +112,7 @@ export function getSteps(node: AstNode): AstNode[] {
         steps = [...steps, ...getSteps((node as BinaryNode).right)]
     }
 
-    if(node.type != "Var" && node.type != "Grouping") {
+    if(node.type != "Var" && node.type != "Grouping" && node.type != "Null") {
         steps.push(node)
     }
 
