@@ -31,12 +31,13 @@ $(function () {
     let expressionManager1 = new ExpressionManager("expression1")
     let expressionManager2 = new ExpressionManager("expression2")
 
+    loadSettings()
+
     updateExpression1()
     updateExpression2()
     $("#expr1").val(expressionManager1.getCurrentExpression())
     $("#expr2").val(expressionManager2.getCurrentExpression())
 
-    loadSettings()
     bindStringSettings("and-input", "And", lexicalSettings as any as {[key: string]: string})
     bindStringSettings("or-input", "Or", lexicalSettings as any as {[key: string]: string})
     bindStringSettings("not-input", "Not", lexicalSettings as any as {[key: string]: string})
