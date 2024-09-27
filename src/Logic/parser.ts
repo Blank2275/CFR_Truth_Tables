@@ -131,6 +131,12 @@ export interface GroupingNode extends AstNode {
 export function parse(tokens: Token[], settings: ParserSettings): AstNode {
     let current = 0;
 
+    if (isAtEnd()) {
+        return {
+            "type": "Null"
+        }
+    }
+
     let ast =  biconditional();
 
     if (!isAtEnd()) {
@@ -257,18 +263,38 @@ export function parse(tokens: Token[], settings: ParserSettings): AstNode {
 
     function not(): AstNode {
         if (settings.prefixNot) {
-            if (match("Not")) {
-                return {
-                    "type": "Not",
-                    //@ts-ignore
-                    "value": value()
+            let node: AstNode | null = null
+            let head: AstNode | null = null
+            while (match("Not")) {
+                if(!node) {
+                    node = {
+                        "type": "Not",
+                        //@ts-ignore
+                        "value": {type: "Null"}
+                    }
+
+                    head = node
+                } else  {
+                    (head as NotNode).value = {
+                        "type": "Not",
+                        //@ts-ignore
+                        "value": {type: "Null"}
+                    }
+
+                    head = (head as NotNode).value
                 }
             }
 
-            return value()
+            if (node == null) {
+                return value()
+            } else {
+                (head as NotNode).value = value()
+                return node
+            }
+
         } else { // postfix
             let node = value();
-            if (match("Not")) {
+            while (match("Not")) {
                 node = {
                     "type": "Not",
                     //@ts-ignore
@@ -296,10 +322,6 @@ export function parse(tokens: Token[], settings: ParserSettings): AstNode {
             expect(")", "Expected Closing Parentheses")
 
             return val
-        } else if (peek().type == "EOI") {
-            return {
-                "type": "Null"
-            }
         } else {
             throw new Error("Invalid Syntax");
         }
@@ -317,7 +339,7 @@ export function parse(tokens: Token[], settings: ParserSettings): AstNode {
 
     function peek(): Token {
         let fallack: Token = {
-            "type": "EOI",
+            "type": "Null",
             "value": ""
         }
         return tokens[current] ?? fallack;

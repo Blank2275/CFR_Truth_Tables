@@ -15,10 +15,10 @@
         </div>
 
         <div class="control-panel-inputs">
-            <p class="tabbable large-label" data-tab="0">Logical Expression</p>
-            <p class="tabbable large-label" data-tab="1">Logical Expression 1</p>
+            <p class="tabbable large-label" id="label-expression-0" data-tab="0">Logical Expression</p>
+            <p class="tabbable large-label" id="label-expression-1" data-tab="1">Logical Expression 1</p>
             <input autocomplete="off" class="expression-input" id="expr1" type="text">
-            <p class="tabbable large-label" data-tab="1">Logical Expression 2</p>
+            <p class="tabbable large-label" id="label-expression-2" data-tab="1">Logical Expression 2</p>
             <input autocomplete="off" class="expression-input tabbable" id="expr2" data-tab="1" type="text">
             <div id="expression-2-input" class="tabbable" data-tab="1"></div>
         </div>
@@ -28,6 +28,45 @@
         <table class="table">
         </table>
       </div>
+    </div>
+    <div class="settings-container">
+        <div class="settings-toggle">
+            <img class="settings-toggle-image" src="public/settings.svg" />
+        </div>
+        <div class="settings-pane">
+            <div class="setting-input-container">
+                <label for="and-input">And</label>
+                <input id="and-input" type="text" name="and">
+            </div>
+            <div class="setting-input-container">
+                <label for="or-input">Or</label>
+                <input id="or-input" type="text" name="and">
+            </div>
+            <div class="setting-input-container">
+                <label for="not-input">Not</label>
+                <input id="not-input" type="text" name="and">
+            </div>
+            <div class="setting-input-container">
+                <label for="conditional-input">Conditional</label>
+                <input id="conditional-input" type="text" name="and">
+            </div>
+            <div class="setting-input-container">
+                <label for="biconditional-input">Biconditional</label>
+                <input id="biconditional-input" type="text" name="and">
+            </div>
+            <div class="setting-input-container">
+                <label for="biconditional-input">Implicit And</label>
+                <input id="implicit-and-input" type="checkbox" name="and">
+            </div>
+            <div class="setting-input-container">
+                <label for="biconditional-input">Prefix Not</label>
+                <input id="prefix-not-input" type="checkbox" name="and">
+            </div>
+            <div class="setting-input-container">
+                <label for="biconditional-input">Explicit Parentheses</label>
+                <input id="explicit-parentheses-input" type="checkbox" name="and">
+            </div>
+        </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>

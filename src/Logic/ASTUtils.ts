@@ -1,4 +1,14 @@
-import {AstNode, BinaryNode, GroupingNode, LexicalSettings, NotNode, ParserSettings, VarNode} from "./parser.ts";
+import {
+    AstNode,
+    BinaryNode,
+    GroupingNode,
+    lex,
+    LexicalSettings,
+    NotNode,
+    parse,
+    ParserSettings,
+    VarNode
+} from "./parser.ts";
 
 export function ASTToString(node: AstNode, lSettings: LexicalSettings, pSettings: ParserSettings): string {
     if (node.type === "Grouping") {
@@ -117,4 +127,13 @@ export function getSteps(node: AstNode): AstNode[] {
     }
 
     return steps
+}
+
+export function validateExpr(expr: string, lexicalSettings: LexicalSettings, parserSettings: ParserSettings): string  {
+    try{
+        parse(lex(expr, lexicalSettings), parserSettings)
+        return ""
+    } catch(err: any) {
+        return (err as Error).message;
+    }
 }
