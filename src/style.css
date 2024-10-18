@@ -170,7 +170,7 @@ html, body {
 
 .setting-input-container {
   height: 3.5%;
-  width: 100%;
+  width: calc(100% - 20px);
   margin-right: 20px;
   margin-bottom: 20px;
   margin-top: 20px;
@@ -190,6 +190,7 @@ html, body {
 .setting-input-container > label {
   grid-row: 1;
   grid-column: 1;
+  text-align: center;
 }
 
 .setting-input-container > * {

@@ -46,6 +46,7 @@ $(function () {
     bindBoolSettings("implicit-and-input", "implicitAnd", parserSettings as any as {[key: string]: boolean})
     bindBoolSettings("prefix-not-input", "prefixNot", parserSettings as any as {[key: string]: boolean})
     bindBoolSettings("explicit-parentheses-input", "explicitParentheses", parserSettings as any as {[key: string]: boolean})
+    $(".settings-pane").animate({width: "toggle"}, 0)
 
     updateTabs()
 

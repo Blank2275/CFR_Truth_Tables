@@ -32,6 +32,7 @@ export function lex(expression: string, settings: LexicalSettings): Token[] {
         // continuing could cause error at end of input
 
        if (peek() == " " || peek() == "\t") {
+           current += 1
            continue
        } else if (peek() == "(") {
             tokens.push({
