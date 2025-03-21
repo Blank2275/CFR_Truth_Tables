@@ -190,7 +190,7 @@ html, body {
 .setting-input-container > label {
   grid-row: 1;
   grid-column: 1;
-  text-align: center;
+  text-align: center`;
 }
 
 .setting-input-container > * {
